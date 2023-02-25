@@ -1,9 +1,8 @@
 <template>
-
 	<div class="page">
-		<message ref="message"></message>
+		<message ref="message" />
 
-		<headers tabname="idle-campus"></headers>
+		<headers tabname="idle-campus" />
 
 		<transition :name="slidename">
 			<div class="container" v-show="mainarea">
@@ -47,22 +46,21 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
-
 			</div>
 		</transition>
-		<footers :urlRouter="$route.path" :cartnum='cartLength' ref="footer"></footers>
+
+		<footers :urlRouter="$route.path" :cartnum='cartLength' ref="footer" />
 	</div>
 </template>
 
 <script>
-import Headers from './base/Header.vue';
-import Footers from './base/Footer.vue';
-import Message from './base/message.vue';
-import '../../static/css/swiper.min.css';
-import Swiper from '../../static/js/swiper.min';
-import { mapGetters, mapMutations } from 'vuex';
+import Headers from './base/Header.vue'
+import Footers from './base/Footer.vue'
+import Message from './base/message.vue'
+import '../../static/css/swiper.min.css'
+import Swiper from '../../static/js/swiper.min'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
 
@@ -87,48 +85,48 @@ export default {
     ])
   },
   mounted () {
-    this.mainarea = true;
+    this.mainarea = true
     setTimeout(() => {
-      const swiper = new Swiper('.swiper-container', {
+      new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,
         spaceBetween: 30,
         autoplay: 1500,
         effect: 'fade',
-      });
+      })
 
-    }, 200);
-    this.getGoodsList();
-    this.getBannerList();
+    }, 200)
+    this.getGoodsList()
+    this.getBannerList()
     /*判断动画是进还是出*/
-    if (this.$store.state.comname == 'category' || 'cart' || 'member') {
-      this.slidename = 'slide-back';
+    if (['category', 'cart', 'member'].includes(this.$store.state.comname)) {
+      this.slidename = 'slide-back'
     } else {
       this.slidename = 'slide-go'
     }
-    this.setComname('index');
+    this.setComname('index')
   },
   methods: {
     // 获取商品列表
     getGoodsList () {
-      const that = this;
+      const that = this
       this.$http.get('/api/homedata').then(function (res) {
-        that.productList = res.data.data;
+        that.productList = res.data.data
       })
         .catch(function (error) {
-          console.log(error);
-        });
+          console.log(error)
+        })
     },
 
     // 获取轮播列表
     getBannerList () {
-      const that = this;
+      const that = this
       this.$http.get('/api/bannerdata').then(function (res) {
-        that.bannerList = res.data.data;
+        that.bannerList = res.data.data
       })
         .catch(function (error) {
-          console.log(error);
-        });
+          console.log(error)
+        })
     },
 
     // 进入商品详情
@@ -138,27 +136,14 @@ export default {
         query: {
           id: id
         }
-      });
+      })
       this.setGoods(item)
-    },
-
-    // 添加到购物车
-    onAddCart (item, name) {
-      if (!this.$store.state.carts.includes(item)) {
-        if (!this.$refs.footer.showNum) {
-          this.cartLength = this.$store.state.carts.length + 1;
-          this.$refs.footer.showNum = true;
-          this.setCarts(item);
-        }
-      } else {
-        this.$refs.message.messageShow = true;
-      }
     },
 
     // 前往分类页面
     onCategory (index) {
-      this.setTabindex(index);
-      this.$router.push('./category');
+      this.setTabindex(index)
+      this.$router.push('./category')
     },
 
     ...mapMutations({
