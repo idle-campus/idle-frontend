@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Headersec from '../base/header-sec.vue';
+import Headersec from '../base/header-sec.vue'
 export default {
   data () {
     return {
@@ -24,7 +24,7 @@ export default {
     Headersec,
   },
   mounted () {
-    this.mainarea = true;
+    this.mainarea = true
   },
 
 }

@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 import App from './App'
 import router from './router'
 import store from './store'
-import VueAwesomeSwiper from 'vue-awesome-swiper'
 import axios from 'axios'
 import VueLazyLoad from 'vue-lazyload'
 import fastclick from 'fastclick'
@@ -12,7 +11,7 @@ require('../mock')
 fastclick.attach(document.body) //解决移动端点击事件200ms延迟
 
 Vue.use(Vuex)
-Vue.prototype.$http = axios;
+Vue.prototype.$http = axios
 Vue.use(VueTouch, { name: 'v-touch' }) //滑动事件
 VueTouch.config.swipe = {            //配置滑动区域为左滑动，解决和滚动事件的冲突
   direction: 'horizontal',

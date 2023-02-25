@@ -6,44 +6,44 @@
 	</transition>
 </template>
 <script>
-	export default {
-		data() {
-			return {
-				messageShow: false
-			}
-		},
-		watch: {
-			messageShow() {
-				if(this.messageShow) {
-					setTimeout(() => {
-						this.messageShow = false;
-					}, 800)
-				}
-			}
-		}
-	}
+export default {
+  data () {
+    return {
+      messageShow: false
+    }
+  },
+  watch: {
+    messageShow () {
+      if (this.messageShow) {
+        setTimeout(() => {
+          this.messageShow = false
+        }, 800)
+      }
+    }
+  }
+}
 </script>
 <style lang="less" scoped>
-	div {
-		font-size: .28rem;
-		background: black;
-		opacity: 0.5;
-		height: .6rem;
-		line-height: .6rem;
-		width: 2rem;
-		margin: 0 auto;
-		padding: 0 .2rem;
-		border-radius: 0.15rem;
-		position: fixed;
-		z-index: 999;
-		bottom: 1.4rem;
-		left: 0;
-		right: 0;
-		margin: auto;
-	}
-	
-	p {
-		text-align: center;
-		color: white;
-	}
+div {
+  font-size: 0.28rem;
+  background: black;
+  opacity: 0.5;
+  height: 0.6rem;
+  line-height: 0.6rem;
+  width: 2rem;
+  margin: 0 auto;
+  padding: 0 0.2rem;
+  border-radius: 0.15rem;
+  position: fixed;
+  z-index: 999;
+  bottom: 1.4rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+p {
+  text-align: center;
+  color: white;
+}
 </style>

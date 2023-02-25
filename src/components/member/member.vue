@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import Headers from '../base/Header.vue';
-import Footers from '../base/Footer.vue';
-import { mapGetters, mapMutations } from 'vuex';
+import Headers from '../base/Header.vue'
+import Footers from '../base/Footer.vue'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -40,14 +40,14 @@ export default {
     ])
   },
   mounted () {
-    this.mainarea = true;
+    this.mainarea = true
     // 判断动画是进还是出
     if (this.$store.state.comname == 'index' || this.$store.state.comname == 'category' || this.$store.state.comname == 'cart') {
-      this.slidename = 'slide-go';
+      this.slidename = 'slide-go'
     } else {
       this.slidename = 'slide-back'
     }
-    this.setComname('member');
+    this.setComname('member')
   },
   methods: {
     // 个人信息

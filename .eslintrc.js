@@ -11,6 +11,10 @@ module.exports = {
     ecmaVersion: 2020
   },
   rules: {
+    // 解决let被强转为const问题
+    'prefer-const': 0,
+    // 保存代码时缩进4个空格
+    'indent': ['error', 2],
     semi: ['error', 'never'],
     quotes: ['error', 'single'],
     'arrow-parens': ['error', 'always'],

@@ -36,13 +36,14 @@ export default {
     showNum () {
       if (this.showNum) {
         setTimeout(() => {
-          this.showNum = false;
+          this.showNum = false
         }, 800)
       }
     }
   }
 }
 </script>
+
 <style lang="less" scoped>
 @import '../../../static/less/variable.less';
 footer {

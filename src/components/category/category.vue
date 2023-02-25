@@ -1,5 +1,4 @@
 <template>
-
 	<div class="page">
 		<message ref="message"></message>
 		<headers tabname="分类"></headers>
@@ -40,10 +39,10 @@
 </template>
 
 <script>
-import Headers from '../base/Header.vue';
-import Footers from '../base/Footer.vue';
-import Message from '../base/message.vue';
-import { mapGetters, mapMutations } from 'vuex';
+import Headers from '../base/Header.vue'
+import Footers from '../base/Footer.vue'
+import Message from '../base/message.vue'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -71,53 +70,53 @@ export default {
   mounted () {
     this.mainarea = true
     if (this.$store.state.tabindex == undefined) {
-      this.setTabindex(0);
+      this.setTabindex(0)
     }
-    this.getMenuList();
-    this.getCategoryList();
+    this.getMenuList()
+    this.getCategoryList()
     /*判断动画是进还是出*/
     if (this.$store.state.comname == 'index') {
-      this.slidename = 'slide-go';
+      this.slidename = 'slide-go'
     } else {
       this.slidename = 'slide-back'
     }
-    this.setComname('category');
+    this.setComname('category')
   },
   methods: {
     // 获取分类栏目
     getMenuList: function () {
-      const that = this;
+      const that = this
       this.$http.get('/api/menudata', {}).then(function (res) {
-        that.menuList = res.data.data;
+        that.menuList = res.data.data
       })
         .catch(function (error) {
-          console.log(error);
-        });
+          console.log(error)
+        })
     },
 
     // 获取分类列表
     getCategoryList: function () {
-      const that = this;
+      const that = this
       this.$http.post('/api/categorydata', {}).then(function (res) {
-        that.categoryList = res.data.data;
-        that.categoryContent = that.categoryList[0];
+        that.categoryList = res.data.data
+        that.categoryContent = that.categoryList[0]
       })
 
         .catch(function (error) {
-          console.log(error);
-        });
+          console.log(error)
+        })
     },
 
     // 切换分类
     onBar (index) {
-      const that = this;
-      this.setTabindex(index);
-      that.categoryContent = that.categoryList[this.$store.state.tabindex];
+      const that = this
+      this.setTabindex(index)
+      that.categoryContent = that.categoryList[this.$store.state.tabindex]
     },
 
     // 进入商品详情
     onDetail (item) {
-      this.$router.push('/detail');
+      this.$router.push('/detail')
       this.setGoods(item)
     },
 

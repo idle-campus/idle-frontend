@@ -40,9 +40,9 @@
 </template>
 
 <script>
-import Headersec from '../base/header-sec.vue';
-import Nopage from '../base/no-page.vue';
-import Ordertab from '../base/order-tab.vue';
+import Headersec from '../base/header-sec.vue'
+import Nopage from '../base/no-page.vue'
+import Ordertab from '../base/order-tab.vue'
 import { mapGetters, mapMutations } from 'vuex'
 export default {
   data () {
@@ -65,26 +65,26 @@ export default {
     ])
   },
   mounted () {
-    this.mainarea = true;
-    this.setOrdercur(1);
+    this.mainarea = true
+    this.setOrdercur(1)
     if (this.$store.state.pays === undefined) {
-      this.havePage = false;
+      this.havePage = false
 
     } else {
-      this.havePage = true;
+      this.havePage = true
     }
-    this.$refs.noback.isBack = false;
+    this.$refs.noback.isBack = false
     /*判断动画是进还是出*/
     if (this.$store.state.ordercur < this.$store.state.ordertab) {
       this.slidename = 'slide-back'
     } else {
       this.slidename = 'slide-go'
     }
-    this.setOrdertab(1);
+    this.setOrdertab(1)
   },
   methods: {
     onSwipeLeft () {
-      this.$router.push('./waitpay');
+      this.$router.push('./waitpay')
     },
     onSwipeRight () {
       this.$router.push('./orderdown')

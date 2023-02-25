@@ -1,71 +1,71 @@
 <template>
-	<div class="page">
-		<headersec tabname="商品详情" />
+  <div class="page">
+    <headersec tabname="商品详情" />
 
-		<transition :name="slidename" >
+    <transition :name="slidename" >
       <div class="container" v-show="mainarea">
         <div v-show="!havePage">
           <nopage />
         </div>
 
-			<div v-show="havePage">
-				<img :src="$store.state.goods.GoodsImage" class="goodsImg" />
-        <div class="detail-content">
-          <p class="goods-name">{{$store.state.goods.GoodsName}}</p>
-          <p class="goods-price">¥{{$store.state.goods.GoodsPrice}}</p>
-        </div>
+        <div v-show="havePage">
+          <img :src="$store.state.goods.GoodsImage" class="goodsImg" />
+          <div class="detail-content">
+            <p class="goods-name">{{$store.state.goods.GoodsName}}</p>
+            <p class="goods-price">¥{{$store.state.goods.GoodsPrice}}</p>
+          </div>
         </div>
       </div>
-	  </transition>
+    </transition>
 
-	  <div class="detail-bottom flex-align-center flex-around"></div>
+    <div class="detail-bottom flex-align-center flex-around"></div>
 
-		<transition name="slide-up">
-			<div class="model" v-show="addCartModel" v-cloak>
-				<div class="model-content addCart-content" @click.stop="addCartModel=true">
-					<div class="cartModel-box flex">
-						<div class="cartModel-img">
-							<img :src="$store.state.goods.GoodsImage" />
-						</div>
-						<div class="cartModel-text">
-							<div class="flex-between">
-								<p class="goods-name">{{$store.state.goods.GoodsName}}</p>
-								<img src="../../../static/img/icon/close.png" class="cartClose" @click.stop="addCartModel=false" />
-							</div>
+    <transition name="slide-up">
 
-							<p class="goods-price">¥{{$store.state.goods.GoodsPrice}}</p>
-						</div>
+    <div class="model" v-show="addCartModel" v-cloak>
+      <div class="model-content addCart-content" @click.stop="addCartModel=true">
+        <div class="cartModel-box flex">
+          <div class="cartModel-img">
+            <img :src="$store.state.goods.GoodsImage" />
+          </div>
+          <div class="cartModel-text">
+            <div class="flex-between">
+              <p class="goods-name">{{$store.state.goods.GoodsName}}</p>
+              <img src="../../../static/img/icon/close.png" class="cartClose" @click.stop="addCartModel=false" />
+            </div>
 
-					</div>
-					<div class="cartModel-bottom flex-between">
-						<p>购买数量</p>
-						<div class="goodsOp flex">
-							<img src="../../../static/img/icon/shop_cut.png" @click="onCutCart()" />
-							<input type="text" :value="goodsNum" readonly="" />
-							<img src="../../../static/img/icon/shop_add.png" @click="onAddCart()" />
-						</div>
-					</div>
-					<div @click.stop="onBuy">
-					<p class="cartModel-addCart"  v-show="!isBuy">
-						加入购物车
-					</p>
-					<p class="cartModel-addCart" v-show="isBuy">
-						立即购买
-					</p>
-					</div>
-				</div>
+            <p class="goods-price">¥{{$store.state.goods.GoodsPrice}}</p>
+          </div>
 
-			</div>
-		</transition>
+        </div>
+        <div class="cartModel-bottom flex-between">
+          <p>购买数量</p>
+          <div class="goodsOp flex">
+            <img src="../../../static/img/icon/shop_cut.png" @click="onCutCart()" />
+            <input type="text" :value="goodsNum" readonly="" />
+            <img src="../../../static/img/icon/shop_add.png" @click="onAddCart()" />
+          </div>
+        </div>
+        <div @click.stop="onBuy">
+        <p class="cartModel-addCart"  v-show="!isBuy">
+          加入购物车
+        </p>
+        <p class="cartModel-addCart" v-show="isBuy">
+          立即购买
+        </p>
+        </div>
+      </div>
 
-	</div>
+    </div>
+    </transition>
 
+    </div>
 </template>
 
 <script>
-import Headersec from '../base/header-sec.vue';
-import Nopage from '../base/no-page.vue';
-import { mapGetters, mapMutations } from 'vuex';
+import Headersec from '../base/header-sec.vue'
+import Nopage from '../base/no-page.vue'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -87,25 +87,25 @@ export default {
     ])
   },
   mounted () {
-    this.mainarea = true;
+    this.mainarea = true
     if (this.$store.state.goods === undefined) {
-      this.havePage = false;
+      this.havePage = false
 
     } else {
-      this.havePage = true;
+      this.havePage = true
     }
     if (this.$store.state.carts != undefined) {
-      this.cartLength = this.$store.state.carts.length;
+      this.cartLength = this.$store.state.carts.length
     }
     /*拿到路由跳转的id*/
-    const id = this.$route.query.id;
+    // const id = this.$route.query.id
     /*判断动画是进还是出*/
     if (this.$store.state.comname === 'orderwait' || this.$store.state.comname === 'cart') {
-      this.slidename = 'slide-back';
+      this.slidename = 'slide-back'
     } else {
       this.slidename = 'slide-go'
     }
-    this.setComname('goodsdetail');
+    this.setComname('goodsdetail')
 
   },
   components: {
@@ -114,40 +114,39 @@ export default {
   },
   methods: {
     toCart () {
-      this.$router.push('./cart');
+      this.$router.push('./cart')
     },
     onCartModel () {
-      this.addCartModel = true;
-      this.isBuy = false;
+      this.addCartModel = true
+      this.isBuy = false
     },
     onBuyModel () {
-      this.addCartModel = true;
-      this.isBuy = true;
+      this.addCartModel = true
+      this.isBuy = true
     },
     onAddCart () {
-      this.goodsNum++;
+      this.goodsNum++
     },
     onCutCart () {
       if (this.goodsNum > 1) {
-        this.goodsNum--;
+        this.goodsNum--
       }
 
     },
     onBuy () {
-      const that = this;
       if (this.isBuy) {
-        let orderArr = [];
+        let orderArr = []
         orderArr.push(this.$store.state.goods)
-        this.setOrders(orderArr);
+        this.setOrders(orderArr)
         this.$router.push('./orderwait')
       } else {
         if (!this.cartNum) {
-          this.setCarts(this.$store.state.goods);
-          this.addCartModel = false;
-          this.cartNum = true;
-          this.cartLength = this.cartLength + 1;
+          this.setCarts(this.$store.state.goods)
+          this.addCartModel = false
+          this.cartNum = true
+          this.cartLength = this.cartLength + 1
           setTimeout(() => {
-            this.cartNum = false;
+            this.cartNum = false
           }, 2000)
         }
 

@@ -42,9 +42,9 @@
 </template>
 
 <script>
-import Headersec from '../base/HeaderSec.vue';
-import Nopage from '../base/NoPage.vue';
-import { mapGetters, mapMutations } from 'vuex';
+import Headersec from '../base/HeaderSec.vue'
+import Nopage from '../base/NoPage.vue'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -66,42 +66,42 @@ export default {
     ])
   },
   mounted () {
-    const that = this;
-    let sums = [];
-    this.mainarea = true;
+    const that = this
+    let sums = []
+    this.mainarea = true
     if (this.$store.state.orders === undefined) {
-      that.havePage = false;
+      that.havePage = false
 
     } else {
-      that.havePage = true;
+      that.havePage = true
       this.$store.state.orders.forEach(function (item) {
-        sums.push(item.GoodsPrice);
-      });
+        sums.push(item.GoodsPrice)
+      })
       for (var i = 0; i < sums.length; i++) {
-        that.allCoach += parseInt(sums[i]);
+        that.allCoach += parseInt(sums[i])
       }
     }
     /*判断动画是进还是出*/
     if (this.$store.state.comname === 'goodsdetail' || this.$store.state.comname === 'cart') {
-      this.slidename = 'slide-go';
+      this.slidename = 'slide-go'
     } else {
       this.slidename = 'slide-back'
     }
-    this.setComname('orderwait');
+    this.setComname('orderwait')
 
   },
 
   methods: {
     /*我的订单*/
     onOrder () {
-      this.$router.push('./order');
-      this.setPays(this.$store.state.orders);
+      this.$router.push('./order')
+      this.setPays(this.$store.state.orders)
 
     },
     /*选择地址*/
     onAddress () {
-      this.setIschoose(1);
-      this.$router.push('./address');
+      this.setIschoose(1)
+      this.$router.push('./address')
     },
     ...mapMutations({
       setPays: 'SET_PAYS',
